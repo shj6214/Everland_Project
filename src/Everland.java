@@ -8,8 +8,10 @@ public class Everland {
 	public static void main(String[] args) {
 		
 		Scanner input = new Scanner(System.in);
-		String pId,prefer = null, YN = null, packName = null,kinds = new String();
-		int useDate=0, count=0, totalPrice=0, choose=0;
+		// String pId,prefer = null, YN = null, packName = null,kinds = new String();
+		String pId, prefer []= new String[100], YN = null, packName [] = new String[100], kinds[] = new String[100];
+		int[] count = new int[100];
+		int useDate=0, price []=new int[100],totalPrice=0, choose=0,i=0;
 		int year=0, month=0, day=0, currentYear=0, currentMonth=0, currentDay=0, age=0;
 		
 		Calendar cal = Calendar.getInstance();
@@ -58,7 +60,6 @@ public class Everland {
 			System.out.println("이용날짜를 입력해주세요.");
 			useDate = input.nextInt();
 				
-			
   		    // 이용날짜 입력 길이 미만 혹은 초과 시
 			if((int)Math.log10(useDate)+1 < 8 || (int)Math.log10(useDate)+1 > 8) {
 				System.out.println("다시 입력해주세요");
@@ -94,7 +95,7 @@ public class Everland {
 			
 			// 티켓 주문 갯수
 			System.out.println("몇 개를 주문하시겠습니까?");
-			count = input.nextInt();
+			count[i] = input.nextInt();
 			
 			// 우대 사항 선택 
 			System.out.print("우대사항을 선택하세요.\n");
@@ -110,169 +111,174 @@ public class Everland {
 			// 사용자의 이용 날짜와 패키지 배열 간 값이 일치할 경우, packName 변수에 패키지 종류 리턴 
 			for(int idx=0; idx<A.length; idx++) {
 				if(useDate == A[idx])
-					packName = "A";
+					packName[i] = "A";
 			}
 			
 			for(int idx=0; idx<B.length; idx++) {
 				if(useDate == B[idx])
-					packName = "B";
+					packName[i] = "B";
 			}
 			
 			for(int idx=0; idx<C.length; idx++) {
 				if(useDate == C[idx])
-					packName = "C";
+					packName[i] = "C";
 			}
 			
 			if(choose == 1) { // 나이 우대
-				prefer = "없음"; // 우대 사항 
+				prefer[i] = "없음"; // 우대 사항 
 				
 				if(age >= 19 || (age >= 13 && age <= 18)) { // 대인/청소년
-					kinds = "대인/청소년"; 
+					kinds[i] = "대인/청소년"; 
 					
-					if(packName == "A") { // 이용날짜 
-						totalPrice += 60000;
+					if(packName[i] == "A") { // 이용날짜 
+						price[i] += 60000;
 					}
-					else if(packName == "B") {
-						totalPrice += 56000;
+					else if(packName[i] == "B") {
+						price[i] += 56000;
 					}
-					else if(packName == "C") {
-						totalPrice += 50000;
+					else if(packName[i] == "C") {
+						price[i] += 50000;
 					}
 				}
 				
 				else if(age >= 65 || (age >= 3 && age <= 12)){ // 소인 경로
-					kinds="소인/경로";
+					kinds[i]="소인/경로";
 										
-					if(packName == "A") {
-						totalPrice += 48000;
+					if(packName[i] == "A") {
+						price[i] += 48000;
 					}
-					else if(packName == "B") {
-						totalPrice += 44000;
+					else if(packName[i] == "B") {
+						price[i] += 44000;
 					}
-					else if(packName == "C") {
-						totalPrice += 40000;
+					else if(packName[i] == "C") {
+						price[i] += 40000;
 					}
 					
 				}
 			} else if(choose == 2) { // 장애인 
-				prefer = "장애인"; // 우대 사항 
+				prefer[i] = "장애인"; // 우대 사항 
 				
 				if(age >= 19) { // 대인
-					kinds="대인";
+					kinds[i]="대인";
 					
-					if(packName == "A") {
-						totalPrice += 36000;
+					if(packName[i] == "A") {
+						price[i] += 36000;
 					}
-					else if(packName == "B") {
-						totalPrice += 33000;
+					else if(packName[i] == "B") {
+						price[i] += 33000;
 					}
-					else if(packName == "C") {
-						totalPrice += 30000;
+					else if(packName[i] == "C") {
+						price[i] += 30000;
 					}
 				}
 				else if((age >= 13 && age <= 18) || (age >= 3 && age <= 12) || age >= 65 ){ // 청소년/소인/경로
-					kinds="청소년/소인/경로";
+					kinds[i]="청소년/소인/경로";
 					
-					if(packName == "A") {
-						totalPrice += 28000;
+					if(packName[i] == "A") {
+						price[i] += 28000;
 					}
-					else if(packName == "B") {
-						totalPrice += 26000;
+					else if(packName[i] == "B") {
+						price[i] += 26000;
 					}
-					else if(packName == "C") {
-						totalPrice += 24000;
+					else if(packName[i] == "C") {
+						price[i] += 24000;
 					}
 				}
 			} else if(choose == 3) { // 국가 유공자 
-				prefer = "국가유공자";
+				prefer[i] = "국가유공자";
 				
 				if(age >= 19) { // 대인
-					kinds="대인";
+					kinds[i]="대인";
 					
-					if(packName == "A") {
-						totalPrice += 30000;
+					if(packName[i] == "A") {
+						price[i] += 30000;
 					}
-					else if(packName == "B") {
-						totalPrice += 28000;
+					else if(packName[i] == "B") {
+						price[i] += 28000;
 					}
-					else if(packName == "C") {
-						totalPrice += 25000;
+					else if(packName[i] == "C") {
+						price[i] += 25000;
 					}
 				}
 				else if((age >= 13 && age <= 18) || (age >= 3 && age <= 12) || age >= 65 ){ // 청소년 소인 경로
-					prefer = "청소년/소인/경로";
-					if(packName == "A") {
-						totalPrice += 24000;
+					prefer[i] = "청소년/소인/경로";
+					if(packName[i] == "A") {
+						price[i] += 24000;
 					}
-					else if(packName == "B") {
-						totalPrice += 22000;
+					else if(packName[i] == "B") {
+						price[i] += 22000;
 					}
-					else if(packName == "C") {
-						totalPrice += 20000;
+					else if(packName[i] == "C") {
+						price[i] += 20000;
 					}
 				}
 			} else if(choose == 4) { // 다자녀 
-				prefer = "다자녀";
+				prefer[i] = "다자녀";
 				if(age >= 18 || (age >= 13 && age <= 18)) { // 대인/청소년
-					kinds="대인/청소년";
+					kinds[i]="대인/청소년";
 					
-					if(packName == "A") {
-						totalPrice += 48000;
+					if(packName[i] == "A") {
+						price[i] += 48000;
 					}
-					else if(packName == "B") {
-						totalPrice += 44000;
+					else if(packName[i] == "B") {
+						price[i] += 44000;
 					}
-					else if(packName == "C") {
-						totalPrice += 40000;
+					else if(packName[i] == "C") {
+						price[i] += 40000;
 					}
 				}
 				else if((age >= 3 && age <= 12) || age >= 65){ // 소인 경로
-					kinds = "소인/경로";
+					kinds[i] = "소인/경로";
 					
-					if(packName == "A") {
-						totalPrice += 38000;
+					if(packName[i] == "A") {
+						price[i] += 38000;
 					}
-					else if(packName == "B") {
-						totalPrice += 35000;
+					else if(packName[i] == "B") {
+						price[i] += 35000;
 					}
-					else if(packName == "C") {
-						totalPrice += 32000;
+					else if(packName[i] == "C") {
+						price[i] += 32000;
 					}
 				}
 				
 			} else if(choose == 5) { // 임산부   
-				prefer = "임산부";
+				prefer[i] = "임산부";
 				
 				if(age >= 19) { // 대인
-					kinds="대인";
+					kinds[i]="대인";
 					
-					if(packName == "A") {
-						totalPrice += 51000;
+					if(packName[i] == "A") {
+						price[i] += 51000;
 					}
-					else if(packName == "B") {
-						totalPrice += 47000;
+					else if(packName[i] == "B") {
+						price[i] += 47000;
 					}
-					else if(packName == "C") {
-						totalPrice += 42000;
+					else if(packName[i] == "C") {
+						price[i] += 42000;
 					}
 				}
 				
 			}
 			
 			// 계산 
-			totalPrice = totalPrice * count;
+			price[i] = price[i] * count[i];
+			totalPrice += price[i];
+			i++;
 			
-			System.out.printf("가격은 %d원 입니다.감사합니다.\n", totalPrice);
+			System.out.printf("총 가격은 %d원 입니다.감사합니다.\n", totalPrice);
 			
+			// 각 변수 배열화 packName, kinds, count, prefer
 			System.out.println("==================에버렌드==================");
-			System.out.printf("%s티켓 %s X %d %s 우대적용 \n",packName, kinds , count, prefer );
+			for(int idx=0; idx < i; idx++) {
+				System.out.printf("%s티켓 %s X %d %d %s 우대적용 \n",packName[idx], kinds[idx], count[idx],price[idx], prefer[idx] );
+			}
 			System.out.println("==========================================");
 			
-			System.out.println("다시 입력하시겠습니까? (Y/N)");
+		
+			// 추가 구매하고자할 때 Y 입력 => while문 상단으로 이동 / N 입력 시 프로그램 종료 
+			System.out.println("추가 구매 Y / 종료 N (Y/N)");
 			YN = input.next();
 			
-			
-			// Y 입력 시 while문 상단으로 N 입력 시 프로그램 종료 
 			if(YN.equals("y") || YN.equals("Y")) {
 				continue;
 			} else {
