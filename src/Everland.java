@@ -57,6 +57,13 @@ public class Everland {
 			System.out.println("이용날짜를 입력해주세요.");
 			useDate = input.nextInt();
 			
+			// System.out.printf("%d",(int)Math.log10(useDate)+1);
+			
+			if((int)Math.log10(useDate)+1 < 7 || (int)Math.log10(useDate)+1 > 8) { // 이용날짜 입력 길이 초과 시 ex) 202109095
+				System.out.println("다시 입력해주세요");
+				continue;
+			}
+			
 			// 주민번호 입력 및 년도, 월, 일 추출 
 			System.out.println("주민번호 입력 예) 950914 ");
 			pId=input.next();
