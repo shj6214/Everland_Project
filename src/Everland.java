@@ -59,7 +59,7 @@ public class Everland {
 			
 			// System.out.printf("%d",(int)Math.log10(useDate)+1);
 			
-			if((int)Math.log10(useDate)+1 < 7 || (int)Math.log10(useDate)+1 > 8) { // 이용날짜 입력 길이 초과 시 ex) 202109095
+			if((int)Math.log10(useDate)+1 < 8 || (int)Math.log10(useDate)+1 > 8) { // 이용날짜 입력 길이 초과 시 ex) 202109095
 				System.out.println("다시 입력해주세요");
 				continue;
 			}
