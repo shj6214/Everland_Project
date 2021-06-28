@@ -58,8 +58,9 @@ public class Everland {
 			useDate = input.nextInt();
 			
 			// 주민번호 입력 및 년도, 월, 일 추출 
-			System.out.println("주민번호 입력");
+			System.out.println("주민번호 입력 예) 950914 ");
 			pId=input.next();
+	
 			year = Integer.parseInt(pId.substring(0,2));
 			month= Integer.parseInt(pId.substring(2,4));
 			day= Integer.parseInt(pId.substring(4,6));
@@ -87,6 +88,11 @@ public class Everland {
 			System.out.print("우대사항을 선택하세요.\n");
 			System.out.print(" 1. 없음\n 2. 장애인\n 3. 국가유공자\n 4. 다자녀\n 5. 임산부\n");
 			choose = input.nextInt();
+			
+			if(choose > 5) { // 우대사항 선택 사항 수 5개보다 클 경우
+				System.out.println("다시 입력해주세요.");
+				continue;
+			}
 			
 			// 사용자의 이용 날짜와 패키지 배열 간 값이 일치할 경우, packName 변수에 패키지 종류 리턴 
 			for(int idx=0; idx<A.length; idx++) {
