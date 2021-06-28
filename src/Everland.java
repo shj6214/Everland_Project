@@ -96,7 +96,7 @@ public class Everland {
 			System.out.print(" 1. 없음\n 2. 장애인\n 3. 국가유공자\n 4. 다자녀\n 5. 임산부\n");
 			choose = input.nextInt();
 			
-			if(choose > 5) { // 우대사항 선택 사항 수 5개보다 클 경우
+			if(choose < 1 || choose > 5) { // 우대사항 선택 사항 수 5개보다 클 경우
 				System.out.println("다시 입력해주세요.");
 				continue;
 			}
