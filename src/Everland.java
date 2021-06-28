@@ -52,41 +52,41 @@ public class Everland {
 	            20211115,20211116,20211117,20211118,20211119,20211122,
 	            20211123,20211124,20211125,20211126,20211129,20211130}; 
 		
-		while(true) { 
-			// 이용날짜 
+		while(true) {
+			
+			// 이용날짜
 			System.out.println("이용날짜를 입력해주세요.");
 			useDate = input.nextInt();
+				
 			
-			// System.out.printf("%d",(int)Math.log10(useDate)+1);
-			
-			if((int)Math.log10(useDate)+1 < 8 || (int)Math.log10(useDate)+1 > 8) { // 이용날짜 입력 길이 초과 시 ex) 202109095
+  		    // 이용날짜 입력 길이 미만 혹은 초과 시
+			if((int)Math.log10(useDate)+1 < 8 || (int)Math.log10(useDate)+1 > 8) {
 				System.out.println("다시 입력해주세요");
 				continue;
 			}
 			
-			// 주민번호 입력 및 년도, 월, 일 추출 
+			// 주민번호 입력 및 년도, 월, 일 추출
 			System.out.println("주민번호 입력 예) 950914 ");
 			pId=input.next();
-				
-			if(pId.length() < 6 || pId.length() > 6) { // 주민번호 입력 길이 초과 시
+			
+			// 주민번호 입력 길이 미만 혹은 초과 시
+			if(pId.length() < 6 || pId.length() > 6) { 
 				System.out.println("다시 입력해주세요");
 				continue;
 			}
-			
+									
 			year = Integer.parseInt(pId.substring(0,2));
 			month= Integer.parseInt(pId.substring(2,4));
 			day= Integer.parseInt(pId.substring(4,6));
 			
-			// 만 나이 계산 
+			// 만 나이 계산
 			if(year < 21){
 				age = currentYear - year - 2000;
-				//System.out.println(age);
 				if (currentMonth > month || (currentMonth == month && currentDay > day )) {
 					age++;
 				}  
 			} else {
 				age = currentYear - year - 1900;
-				//System.out.println(age);
 				if (currentMonth > month || (currentMonth == month && currentDay > day )) {
 					age++;
 				} 
@@ -101,7 +101,8 @@ public class Everland {
 			System.out.print(" 1. 없음\n 2. 장애인\n 3. 국가유공자\n 4. 다자녀\n 5. 임산부\n");
 			choose = input.nextInt();
 			
-			if(choose < 1 || choose > 5) { // 우대사항 선택 사항 수 5개보다 클 경우
+			// 우대사항 선택 사항 수 5개보다 클 경우
+			if(choose < 1 || choose > 5) { 
 				System.out.println("다시 입력해주세요.");
 				continue;
 			}
@@ -271,7 +272,7 @@ public class Everland {
 			YN = input.next();
 			
 			
-			// Y일 경우 while문 상단으로 N일 경우 프로그램 종료 
+			// Y 입력 시 while문 상단으로 N 입력 시 프로그램 종료 
 			if(YN.equals("y") || YN.equals("Y")) {
 				continue;
 			} else {
