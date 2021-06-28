@@ -67,7 +67,12 @@ public class Everland {
 			// 주민번호 입력 및 년도, 월, 일 추출 
 			System.out.println("주민번호 입력 예) 950914 ");
 			pId=input.next();
-	
+				
+			if(pId.length() < 6 || pId.length() > 6) { // 주민번호 입력 길이 초과 시
+				System.out.println("다시 입력해주세요");
+				continue;
+			}
+			
 			year = Integer.parseInt(pId.substring(0,2));
 			month= Integer.parseInt(pId.substring(2,4));
 			day= Integer.parseInt(pId.substring(4,6));
