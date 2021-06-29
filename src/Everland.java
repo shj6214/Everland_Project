@@ -305,8 +305,8 @@ public class Everland {
 			addTicket(); // 추가 구매 입력
 			
 			if(YN.equals("y") || YN.equals("Y")) { continue; } // Y 입력시 추가 티켓 구매, N 입력시 프로그램 종료 
-			else {break;}
+			else { System.out.println("프로그램을 종료 합니다!"); break;}
 		} 
-		input.close();
+		input.close(); // 스캐너 객체 변수 메모리 반환 
 	}
 }
