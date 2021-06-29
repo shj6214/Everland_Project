@@ -1,13 +1,9 @@
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
-
 public class Everland {
 
-	
-	
 	public static ArrayList<String> prefer = new ArrayList<String>();
 	public static ArrayList<String> packName = new ArrayList<String>();
 	public static ArrayList<String> kinds = new ArrayList<String>();
@@ -58,23 +54,48 @@ public class Everland {
             20211115,20211116,20211117,20211118,20211119,20211122,
             20211123,20211124,20211125,20211126,20211129,20211130}; 
 	
-	
 	public static void inputDate()
 	{
-		
 		System.out.println("이용날짜를 입력해주세요.");
 		useDate = input.nextInt();
 	}
-	public static void ticketInput() {
+	
+	public static void ticketCount() {
 		System.out.println("몇 개를 주문하시겠습니까?");
 		count.add(input.nextInt());
 	}
+
+	public static void inputPid()
+	{
+		System.out.println("주민번호 입력 예) 950914 ");
+		pId=input.next();
+		
+		year = Integer.parseInt(pId.substring(0,2));
+		month= Integer.parseInt(pId.substring(2,4));
+		day= Integer.parseInt(pId.substring(4,6));
+		
+		currentYear=cal.get(Calendar.YEAR);
+		currentMonth=cal.get(Calendar.MONTH)+1; // 0부터 시작하므로 1추가 
+		currentDay=cal.get(Calendar.DAY_OF_MONTH);
+		
+		// 만 나이 계산
+		if(year < 21){
+			age = currentYear - year - 2000;
+			if (currentMonth > month || (currentMonth == month && currentDay > day )) {
+				age++;
+			}  
+		} else {
+			age = currentYear - year - 1900;
+			if (currentMonth > month || (currentMonth == month && currentDay > day )) {
+				age++;
+			} 
+		}	
+	}
+	
 	public static void inputPrefer() {
 		System.out.print("우대사항을 선택하세요.\n");
 		System.out.print(" 1. 없음\n 2. 장애인\n 3. 국가유공자\n 4. 다자녀\n 5. 임산부\n");
 		choose = input.nextInt();
-		
-		
 		
 		for(int idx=0; idx<A.length; idx++) {
 			if(useDate == A[idx])
@@ -92,7 +113,6 @@ public class Everland {
 		}
 		
 		// 사용자의 이용 날짜와 패키지 배열 간 값이 일치할 경우, packName 변수에 패키지 종류 리턴 
-
 		if(choose == 1) { // 나이 우대
 			prefer.add("없음"); // 우대 사항 
 			
@@ -109,7 +129,6 @@ public class Everland {
 					price.add(50000);
 				}
 			}
-			
 			else if(age >= 65 || (age >= 3 && age <= 12)){ // 소인 경로
 				kinds.add("소인/경로");
 									
@@ -225,38 +244,11 @@ public class Everland {
 					price.add(42000);
 				}
 			}
-			
 		}
 	}
 	
-	public static void inputPid()
-	{
-		System.out.println("주민번호 입력 예) 950914 ");
-		pId=input.next();
-		
-		year = Integer.parseInt(pId.substring(0,2));
-		month= Integer.parseInt(pId.substring(2,4));
-		day= Integer.parseInt(pId.substring(4,6));
-		
-		currentYear=cal.get(Calendar.YEAR);
-		currentMonth=cal.get(Calendar.MONTH)+1; // 0부터 시작하므로 1추가 
-		currentDay=cal.get(Calendar.DAY_OF_MONTH);
-		
-		// 만 나이 계산
-		if(year < 21){
-			age = currentYear - year - 2000;
-			if (currentMonth > month || (currentMonth == month && currentDay > day )) {
-				age++;
-			}  
-		} else {
-			age = currentYear - year - 1900;
-			if (currentMonth > month || (currentMonth == month && currentDay > day )) {
-				age++;
-			} 
-		}	
-	}
 	
-	public static void operation() {
+	public static void operation() { // 가격 계산
 		price.add(price.get(i) * count.get(i));
 		totalPrice += price.get(i);
 		i++;
@@ -270,7 +262,7 @@ public class Everland {
 		System.out.println("==========================================");
 	}
 	
-	public static void addTicket() {
+	public static void addTicket() { // 추가 구매
 		System.out.println("추가 구매 Y / 종료 N (Y/N)");
 		YN = input.next();	
 	}
@@ -280,21 +272,18 @@ public class Everland {
 		while(true) {
 		
 			inputDate(); // 이용날짜	
-  		    // 이용날짜 입력 길이 미만 혹은 초과 시
-			if((int)Math.log10(useDate)+1 < 8 || (int)Math.log10(useDate)+1 > 8) {
+			if((int)Math.log10(useDate)+1 < 8 || (int)Math.log10(useDate)+1 > 8) { // 이용날짜 입력 길이 미만 혹은 초과 시
 				System.out.println("다시 입력해주세요");
 				continue;
 			}
 
 			inputPid(); // 주민번호 입력 및 년도, 월, 일 추출		
-			// 주민번호 입력 길이 미만 혹은 초과 시
-			if(pId.length() < 6 || pId.length() > 6) { 
+			if(pId.length() < 6 || pId.length() > 6) { // 주민번호 입력 길이 미만 혹은 초과 시
 				System.out.println("다시 입력해주세요");
 				continue;
 			}
 			
-			ticketInput(); // 티켓 주문 갯수
-			
+			ticketCount(); // 티켓 주문 갯수
 			inputPrefer(); // 우대 사항 선택 
 			if(choose < 1 || choose > 5) { // 우대사항 선택 사항 수 5개보다 클 경우 
 				System.out.println("다시 입력해주세요.");
@@ -303,10 +292,9 @@ public class Everland {
 			
 			operation(); // 계산 
 			addTicket(); // 추가 구매 입력
-			
 			if(YN.equals("y") || YN.equals("Y")) { continue; } // Y 입력시 추가 티켓 구매, N 입력시 프로그램 종료 
 			else { System.out.println("프로그램을 종료 합니다!"); break;}
 		} 
-		input.close(); // 스캐너 객체 변수 메모리 반환 
+		input.close(); // 스캐너 객체 메모리 반환 
 	}
 }
