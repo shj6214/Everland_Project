@@ -8,6 +8,7 @@ public class Everland {
 	public static void main(String[] args) {
 		EverlandInput everInput = new EverlandInput(); // EverlandProcess로부터 가져오기 위함 
 		EverlandData everData = new EverlandData();
+		EverlandVariable everVariable = new EverlandVariable();
 		
 		while(true) {
 		
@@ -26,7 +27,7 @@ public class Everland {
 			
 			everInput.inputCount(everData.count); // 티켓 주문 갯수
 			everInput.inputPrefer(); // 우대 사항 선택
-			everData.ProcessPrefer(everInput.A, everInput.B, everInput.C, everInput.useDate, everInput.choose); // 우대 사항 처리 
+			everData.ProcessPrefer(everVariable.A, everVariable.B, everVariable.C, everInput.useDate, everInput.choose); // 우대 사항 처리 
 			if(everInput.choose < 1 || everInput.choose > 5) { // 우대사항 선택 사항 수 5개보다 클 경우 
 				System.out.println("다시 입력해주세요.");
 				continue;
