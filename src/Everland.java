@@ -10,9 +10,11 @@ public class Everland {
 	public static ArrayList<Integer> count = new ArrayList<Integer>();
 	public static ArrayList<Integer> price = new ArrayList<Integer>();
 	
+	
 	public static String pId=null, YN=null;
 	
-	public static int useDate=0, totalPrice=0, choose=0, i=0;
+	
+	public static int useDate=0, choose=0, i=0, totalPrice=0;
 	public static int year=0, month=0, day=0, currentYear=0, currentMonth=0, currentDay=0, age=0;
 	
 	public static Calendar cal = Calendar.getInstance();
@@ -249,15 +251,15 @@ public class Everland {
 	
 	
 	public static void operation() { // 가격 계산
-		price.add(price.get(i) * count.get(i));
-		totalPrice += price.get(i);
+	
+		totalPrice += price.get(i) * count.get(i);
 		i++;
 		
 		System.out.printf("총 가격은 %d원 입니다.감사합니다.\n", totalPrice);
 		
 		System.out.println("==================에버렌드==================");
 		for(int idx=0; idx < count.size(); idx++) {
-			System.out.printf("%s티켓 %s X %d %d %s 우대적용 \n",packName.get(idx), kinds.get(idx), count.get(idx),price.get(idx), prefer.get(idx) );
+			System.out.printf("%s티켓 %s X %d %d %s 우대적용 \n",packName.get(idx), kinds.get(idx), count.get(idx),(price.get(idx)*count.get(idx)), prefer.get(idx) );
 		}
 		System.out.println("==========================================");
 	}
