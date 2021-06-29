@@ -274,7 +274,7 @@ public class Everland {
 			System.out.printf("총 가격은 %d원 입니다.감사합니다.\n", totalPrice);
 			
 			System.out.println("==================에버렌드==================");
-			for(int idx=0; idx < i; idx++) {
+			for(int idx=0; idx < count.size(); idx++) {
 				System.out.printf("%s티켓 %s X %d %d %s 우대적용 \n",packName.get(idx), kinds.get(idx), count.get(idx),price.get(idx), prefer.get(idx) );
 			}
 			System.out.println("==========================================");
