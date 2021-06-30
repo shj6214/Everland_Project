@@ -7,10 +7,9 @@ import java.util.Scanner;
 public class EverlandInput {
 	
 	public int useDate=0, choose=0;
-	
 
 	public Calendar cal = Calendar.getInstance();
-	public int year=0, month=0, day=0, currentYear=0, currentMonth=0, currentDay=0;
+	public int year=0, month=0, day=0, currentYear=0, currentMonth=0, currentDay=0, count=0, coupon=0;
 	public String pId=null, YN=null;
 	
 	public Scanner input = new Scanner(System.in);	
@@ -35,15 +34,20 @@ public class EverlandInput {
 		currentDay=cal.get(Calendar.DAY_OF_MONTH);
 	}
 		
-	public void inputCount(ArrayList<Integer> count) {
+	public void inputCount() {
 		System.out.println("몇 개를 주문하시겠습니까?");
-		count.add(input.nextInt());
+		count=input.nextInt();
 	}
 		
 	public void inputPrefer() {
 		System.out.print("우대사항을 선택하세요.\n");
 		System.out.print(" 1. 없음\n 2. 장애인\n 3. 국가유공자\n 4. 다자녀\n 5. 임산부\n");
 		choose = input.nextInt();
+	}
+	
+	public void InputCoupon() {
+		System.out.println("쿠폰이 있으시면 1번, 없으실 경우 2번을 선택해주세요.");
+		coupon = input.nextInt();
 	}
 		
 	public void addTicket() { // 추가 구매

@@ -9,9 +9,9 @@ public class Everland {
 		EverlandInput everInput = new EverlandInput(); // EverlandProcess로부터 가져오기 위함 
 		EverlandData everData = new EverlandData();
 		EverlandVariable everVariable = new EverlandVariable();
+		DataClass everDC = new DataClass();
 		
 		while(true) {
-		
 			everInput.inputDate(); // 이용날짜	
 			if((int)Math.log10(everInput.useDate)+1 < 8 || (int)Math.log10(everInput.useDate)+1 > 8) { // 이용날짜 입력 길이 미만 혹은 초과 시
 				System.out.println("다시 입력해주세요");
@@ -25,9 +25,10 @@ public class Everland {
 				continue;
 			}
 			
-			everInput.inputCount(everData.count); // 티켓 주문 갯수
+			everInput.inputCount(); // 티켓 주문 갯수
 			everInput.inputPrefer(); // 우대 사항 선택
-			everData.ProcessPrefer(everVariable.A, everVariable.B, everVariable.C, everInput.useDate, everInput.choose); // 우대 사항 처리 
+			everInput.InputCoupon(); // 쿠폰 유무 선택
+			everData.ProcessPrefer(everVariable.A, everVariable.B, everVariable.C, everInput.useDate, everInput.choose, everDC.prefer,everDC.packName, everDC.kinds, everDC.tcount, everDC.price, everDC.isEventCoupon, everInput.count, everInput.coupon); // 우대 사항 처리 
 			if(everInput.choose < 1 || everInput.choose > 5) { // 우대사항 선택 사항 수 5개보다 클 경우 
 				System.out.println("다시 입력해주세요.");
 				continue;
